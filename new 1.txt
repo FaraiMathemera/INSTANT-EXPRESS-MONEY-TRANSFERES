@@ -1,0 +1,37 @@
+
+							<script>
+							
+							var x = document.getElementById("demo");
+
+							function getLocation() {
+								if (navigator.geolocation) {
+									navigator.geolocation.getCurrentPosition(showPosition);
+								} else { 
+									x.innerHTML = "Geolocation is not supported by this browser.";
+								}
+							}
+							
+							
+
+							function showPosition(position) {
+								x.innerHTML = "Latitude: " + position.coords.latitude + 
+								"<br>Longitude: " + position.coords.longitude;
+							}
+							
+							
+							
+								if(window.attachEvent) {
+									window.attachEvent('onload', getLocation);
+								} else {
+									if(window.onload) {
+										var curronload = window.onload;
+										var newonload = function(evt) {
+											curronload(evt);
+											getLocation(evt);
+										};
+										window.onload = newonload;
+									} else {
+										window.onload = getLocation;
+									}
+								}
+							</script>
